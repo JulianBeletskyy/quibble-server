@@ -49,6 +49,7 @@ const getUsersInRoom = roomId => {
 }
 
 io.on('connection', async socket => {
+  console.log('user connect')
   const { roomId, userId } = socket.handshake.query
   socket.nickname = userId
   socket.join(roomId)
@@ -57,6 +58,7 @@ io.on('connection', async socket => {
   socket.broadcast.to(roomId).emit('newUserConnect', {userId})
 
   socket.on('disconnect', () => {
+    console.log('user disconnect')
     socket.broadcast.to(roomId).emit('userLeaveRoom', {userId})
   })
 })
