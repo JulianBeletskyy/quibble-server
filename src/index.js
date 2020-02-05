@@ -9,6 +9,7 @@ import socket from 'socket.io'
 import apiRoutes from './routes'
 import { isExistGame } from './controllers/GameController'
 import { getPlayer, getGamePlayers } from './controllers/PlayerController'
+require('babel-polyfill');
 
 const app = express();
 app.server = http.createServer(app);

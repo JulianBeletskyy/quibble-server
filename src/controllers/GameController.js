@@ -1,29 +1,26 @@
+require('babel-polyfill')
 import { uuid } from 'uuidv4'
 import { Game, Player } from '../models'
 import { io } from '../index'
 import axios from 'axios'
 import FormData from 'form-data'
 import request from 'request'
-import Instagram from '../services/instagram'
+// import Instagram from '../services/instagram'
 
-const APP_ID = '484722455566938'
-const APP_SECRET = '1148f39830a6989a09b609be0fd798e0'
-const REDIRECT_URL = 'https://localhost:3000/'
+// const instaClient = new Instagram({APP_ID, APP_SECRET, REDIRECT_URL})
 
-const instaClient = new Instagram({APP_ID, APP_SECRET, REDIRECT_URL})
-
-export const instagram = async (req, res) => {
-	const { code } = req.body
-	instaClient.getAccessToken(code)
-		.then(({access_token}) => {
-			instaClient.me().then(result => {
-				res.status(200).json(result)
-			})
-		})
-		.catch(error => {
-			res.status(error.code).json(error)
-		})
-}
+// export const instagram = async (req, res) => {
+// 	const { code } = req.body
+// 	instaClient.getAccessToken(code)
+// 		.then(({access_token}) => {
+// 			instaClient.me().then(result => {
+// 				res.status(200).json(result)
+// 			})
+// 		})
+// 		.catch(error => {
+// 			res.status(error.code).json(error)
+// 		})
+// }
 
 export const create = async (req, res) => {
 	const gameId = uuid()
